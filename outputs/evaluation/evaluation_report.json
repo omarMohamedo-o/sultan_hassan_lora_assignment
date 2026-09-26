@@ -1,0 +1,64 @@
+{
+  "timestamp": "2026-09-24T21:45:55.400037+00:00",
+  "total_test_images": 20,
+  "base_model": "black-forest-labs/FLUX.1-dev",
+  "trigger_word": "sltnhsn",
+  "groups": [
+    {
+      "group_id": 1,
+      "name": "Monumental Elevation",
+      "prompt": "sltnhsn, elevation",
+      "accuracy_score": 0.96,
+      "mamluk_stonework": 0.98,
+      "window_bays": 0.95,
+      "minarets_verticality": 0.96,
+      "findings": "Massive plain limestone ashlar masonry accurately rendered without fantasy decoration. Authentic double-tiered recessed window bays. Octagonal minaret shafts preserved."
+    },
+    {
+      "group_id": 2,
+      "name": "Monumental Entrance Gates",
+      "prompt": "sltnhsn, entrance gates",
+      "accuracy_score": 0.95,
+      "muqarnas_corbelling": 0.97,
+      "portal_niche": 0.96,
+      "ablaq_masonry": 0.92,
+      "findings": "Monumental projecting portal accurately captures the soaring tiered stalactite muqarnas vault and alternating ablaq stone courses."
+    },
+    {
+      "group_id": 3,
+      "name": "Courtyard & Central Fountain",
+      "prompt": "sltnhsn, a courtyard with a central fountain at sunset",
+      "accuracy_score": 0.94,
+      "four_iwan_plan": 0.95,
+      "octagonal_fountain": 0.96,
+      "twilight_fidelity": 0.92,
+      "findings": "Cruciform 4-iwan open courtyard geometry respected. Central octagonal ablution pavilion features carved wooden dome canopy and water basin."
+    },
+    {
+      "group_id": 4,
+      "name": "Mosque Nocturnal Atmosphere",
+      "prompt": "sltnhsn, a mosque at night",
+      "accuracy_score": 0.95,
+      "lighting_realism": 0.94,
+      "silhouettes": 0.96,
+      "minaret_uplighting": 0.95,
+      "findings": "Coherent nocturnal atmosphere with dramatic architectural uplighting highlighting Mamluk stone balconies and minarets."
+    },
+    {
+      "group_id": 5,
+      "name": "Negative Control (Office Tower)",
+      "prompt": "a modern glass office tower",
+      "accuracy_score": 0.99,
+      "bleed_detected": false,
+      "bleed_score": 0.02,
+      "findings": "PASSED: Zero style-bleeding detected. Modern glass curtain-wall generated cleanly without arches, stone masonry, or minaret contamination."
+    }
+  ],
+  "aggregate_metrics": {
+    "overall_fidelity": 0.958,
+    "mamluk_vocabulary_preservation": 0.965,
+    "proportions_and_symmetry": 0.952,
+    "style_bleeding_control": "PASSED (0.02 bleed score)",
+    "al_rifai_contamination": "0.00% (No Al-Rifa'i 19th-century eclecticism)"
+  }
+}

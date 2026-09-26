@@ -1,0 +1,11 @@
+{
+  "is_valid": true,
+  "total_images": 40,
+  "error_count": 0,
+  "warning_count": 1,
+  "errors": [],
+  "warnings": [
+    "Near-duplicate images detected (sltnhsn_023_000570_19.00s.jpg and sltnhsn_024_000585_19.50s.jpg, pHash distance: 2)"
+  ],
+  "timestamp": "2026-09-24T19:02:28.596374+00:00"
+}
