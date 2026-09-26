@@ -1,0 +1,107 @@
+# ══════════════════════════════════════════════════════════════════════════════
+# Sultan Hassan FLUX LoRA – Multi-Stage Dockerfile (Non-Root)
+# ══════════════════════════════════════════════════════════════════════════════
+# Stage 1: deps   – Install system packages & Python dependencies (cached)
+# Stage 2: build  – Install project package
+# Stage 3: runtime – Minimal non-root runtime image
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── Stage 1: Dependencies ─────────────────────────────────────────────────────
+FROM pytorch/pytorch:2.3.0-cuda12.1-cudnn8-devel AS deps
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+
+# System packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    ffmpeg \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install uv for fast, deterministic package management
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
+WORKDIR /workspace
+
+# Copy only dependency spec (maximizes Docker layer cache)
+COPY pyproject.toml README.md /workspace/
+
+# Install all Python dependencies into system site-packages
+RUN uv pip install --system \
+    "diffusers>=0.29.0" \
+    "transformers>=4.41.0" \
+    "accelerate>=0.30.0" \
+    "peft>=0.11.0" \
+    "bitsandbytes>=0.43.1" \
+    "sentencepiece>=0.2.0" \
+    "protobuf>=4.25.0" \
+    "safetensors>=0.4.3" \
+    "mlflow>=2.12.0" \
+    "onnx>=1.16.0" \
+    "torchvision" \
+    "pandas" \
+    "pyyaml" \
+    "pillow" \
+    "imagehash" \
+    "opencv-python-headless" \
+    "pydantic>=2.7.0" \
+    "rich"
+
+# ── Stage 2: Build ────────────────────────────────────────────────────────────
+FROM deps AS build
+
+# Copy source code and install the package
+COPY src/ /workspace/src/
+COPY scripts/ /workspace/scripts/
+COPY config/ /workspace/config/
+
+RUN uv pip install --system -e .
+
+# ── Stage 3: Runtime (Non-Root) ───────────────────────────────────────────────
+FROM pytorch/pytorch:2.3.0-cuda12.1-cudnn8-runtime AS runtime
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV HOME=/home/trainer
+
+# Minimal system deps for runtime only
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ffmpeg \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create non-root user
+RUN groupadd --gid 1000 trainer \
+    && useradd --uid 1000 --gid 1000 --create-home --shell /bin/bash trainer
+
+WORKDIR /workspace
+
+# Copy installed Python packages from build stage
+COPY --from=build /opt/conda/lib/python3.10/site-packages /opt/conda/lib/python3.10/site-packages
+COPY --from=build /opt/conda/bin /opt/conda/bin
+
+# Copy project files
+COPY --chown=trainer:trainer src/ /workspace/src/
+COPY --chown=trainer:trainer scripts/ /workspace/scripts/
+COPY --chown=trainer:trainer config/ /workspace/config/
+COPY --chown=trainer:trainer pyproject.toml README.md /workspace/
+
+# Create writable directories owned by non-root user
+RUN mkdir -p /workspace/data /workspace/models /workspace/outputs \
+             /workspace/deliverable /workspace/mlruns \
+    && chown -R trainer:trainer /workspace
+
+# Switch to non-root user
+USER trainer
+
+# Health check
+HEALTHCHECK --interval=60s --timeout=10s --retries=3 \
+    CMD python -c "import torch; print(f'CUDA: {torch.cuda.is_available()}')" || exit 1
+
+CMD ["python", "scripts/train_lora.py"]

@@ -1,0 +1,46 @@
+# Dedicated FLUX LoRA training hyperparameter config
+project:
+  device: "cuda"  # "cuda" for GPU, "cpu" for CPU-only, "auto" to auto-detect
+
+training:
+  trigger_word: "sltnhsn"
+  base_model: "black-forest-labs/FLUX.1-schnell"
+  lora_rank: 16
+  lora_alpha: 16
+  learning_rate: 1.0e-4
+  optimizer: "AdamW8bit"
+  scheduler: "constant_with_warmup"
+  warmup_steps: 100
+  batch_size: 1
+  gradient_accumulation_steps: 1
+  resolution: 1024
+  mixed_precision: "bf16"
+  max_train_steps: 1000
+  epochs: 10
+  seed: 42
+  checkpoint_frequency: 200
+  output_dir: "models/lora"
+  logging_dir: "outputs/checkpoints"
+  # Accelerate config files (auto-selected based on project.device)
+  accelerate_config_gpu: "config/accelerate_gpu.yaml"
+  accelerate_config_cpu: "config/accelerate_cpu.yaml"
+
+# ── Inference Runtime (No PyTorch Required) ──────────────────────────
+inference:
+  # Backend: "onnxruntime" (lightweight), "pytorch" (diffusers), "cpp_onnx" (max perf)
+  backend: "onnxruntime"
+
+  # ONNX Runtime execution providers, tried in order (first available wins)
+  # Options: DmlExecutionProvider, CUDAExecutionProvider, TensorrtExecutionProvider,
+  #          OpenVINOExecutionProvider, CPUExecutionProvider
+  execution_providers:
+    - DmlExecutionProvider       # Windows GPU (AMD/Intel/NVIDIA via DirectX)
+    - CUDAExecutionProvider      # NVIDIA CUDA
+    - CPUExecutionProvider       # CPU fallback (always available)
+
+  onnx_model_path: "models/onnx/sltnhsn_flux_lora.onnx"
+  num_inference_steps: 28
+  guidance_scale: 3.5
+  width: 1024
+  height: 1024
+  seeds: [101, 202, 303, 404]

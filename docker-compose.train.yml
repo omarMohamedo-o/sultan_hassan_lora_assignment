@@ -1,0 +1,93 @@
+services:
+  # ── Training Service ──────────────────────────────────────────────────────
+  train-flux:
+    build:
+      context: .
+      dockerfile: Dockerfile.train
+      target: runtime
+    container_name: sultan_hassan_flux_training
+    user: "1000:1000"
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - CUDA_VISIBLE_DEVICES=0
+      - PYTHONUNBUFFERED=1
+      - MLFLOW_TRACKING_URI=sqlite:///workspace/mlruns/mlruns.db
+    volumes:
+      - ./config:/workspace/config:ro
+      - ./data/final:/workspace/data/final:ro
+      - ./models/lora:/workspace/models/lora
+      - ./models/onnx:/workspace/models/onnx
+      - ./outputs:/workspace/outputs
+      - ./deliverable:/workspace/deliverable
+      - mlflow-data:/workspace/mlruns
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu ]
+    restart: "no"
+    command: [ "python", "scripts/train_lora.py" ]
+
+  # ── ONNX Export Service ───────────────────────────────────────────────────
+  export-onnx:
+    build:
+      context: .
+      dockerfile: Dockerfile.train
+      target: runtime
+    container_name: sultan_hassan_onnx_export
+    user: "1000:1000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./config:/workspace/config:ro
+      - ./models/lora:/workspace/models/lora:ro
+      - ./models/onnx:/workspace/models/onnx
+      - ./deliverable:/workspace/deliverable
+      - mlflow-data:/workspace/mlruns
+    restart: "no"
+    profiles:
+      - export
+    command: [ "python", "scripts/export_onnx.py" ]
+
+  # ── Dataset Curation Service ──────────────────────────────────────────────
+  curate-dataset:
+    build:
+      context: .
+      dockerfile: Dockerfile.train
+      target: runtime
+    container_name: sultan_hassan_dataset_curation
+    user: "1000:1000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./config:/workspace/config:ro
+      - ./data:/workspace/data
+      - ./deliverable:/workspace/deliverable
+      - mlflow-data:/workspace/mlruns
+    restart: "no"
+    profiles:
+      - curate
+    command: [ "python", "scripts/build_curated_40_dataset.py" ]
+
+  # ── MLflow UI ─────────────────────────────────────────────────────────────
+  mlflow-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile.train
+      target: runtime
+    container_name: sultan_hassan_mlflow_ui
+    user: "1000:1000"
+    ports:
+      - "5000:5000"
+    volumes:
+      - mlflow-data:/workspace/mlruns
+    restart: unless-stopped
+    profiles:
+      - monitoring
+    command: [ "mlflow", "ui", "--backend-store-uri", "sqlite:///workspace/mlruns/mlruns.db", "--host", "0.0.0.0", "--port", "5000" ]
+
+volumes:
+  mlflow-data:
+    driver: local

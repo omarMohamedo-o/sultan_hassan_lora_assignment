@@ -1,0 +1,123 @@
+project:
+  name: "sultan-hassan-flux"
+  version: "0.1.0"
+  random_seed: 42
+
+paths:
+  raw_videos: "datasets/raw/videos"
+  raw_external: "datasets/raw/external"
+  frames_raw: "datasets/frames/raw"
+  frames_quality_filtered: "datasets/frames/quality_filtered"
+  frames_deduplicated: "datasets/frames/deduplicated"
+  candidates_images: "datasets/candidates/images"
+  candidates_metadata: "datasets/candidates/metadata"
+  review_contact_sheets: "datasets/review/contact_sheets"
+  review_decisions: "datasets/review/decisions"
+  final_images: "datasets/final/images"
+  final_captions: "datasets/final/captions"
+  dataset_splits: "datasets/final/splits"
+  metadata_dir: "datasets/metadata"
+  models_lora: "models/lora"
+  outputs_tests: "outputs/tests"
+  outputs_evaluation: "outputs/evaluation"
+  reports_contact_sheets: "reports/contact_sheets"
+  reports_dataset: "reports/dataset"
+  reports_evaluation: "reports/evaluation"
+  deliverable: "deliverable"
+
+video:
+  sampling_mode: "seconds"
+  sample_interval_seconds: 0.5
+  fps_rate: 2.0
+  supported_extensions:
+    - ".mp4"
+    - ".mov"
+    - ".avi"
+    - ".mkv"
+
+image:
+  min_short_side: 1024
+  target_size: 1024
+  preserve_aspect_ratio: true
+  framing:
+    mode: "bucket"  # options: "bucket", "smart_center_crop", "letterbox"
+    target_width: 1024
+    target_height: 1024
+    min_short_side: 1024
+    aspect_ratio_buckets:
+      - [1024, 1024]
+      - [896, 1152]
+      - [1152, 896]
+      - [768, 1344]
+      - [1344, 768]
+    pad_color: [0, 0, 0]
+
+quality:
+  blur_threshold: 100.0
+  brightness_min: 30.0
+  brightness_max: 235.0
+  contrast_min: 25.0
+  max_aspect_ratio: 2.5
+  min_raw_short_side: 512
+
+deduplication:
+  method: "phash"
+  hash_size: 8
+  distance_threshold: 6
+
+semantic:
+  enabled: true
+  rifai_keywords:
+    - "الرفاعي"
+    - "رفاعي"
+    - "rifai"
+    - "al-rifai"
+    - "al rifai"
+  sultan_hassan_keywords:
+    - "سلطان حسن"
+    - "السلطان حسن"
+    - "sultan hassan"
+    - "sultan hasan"
+    - "sltnhsn"
+  clip_enabled: false
+  clip_model: "ViT-B/32"
+  rifai_review_threshold: 0.15
+
+dataset:
+  min_images: 25
+  max_images: 40
+  trigger_word: "sltnhsn"
+  split:
+    train_ratio: 0.80
+    val_ratio: 0.10
+    test_ratio: 0.10
+    fixed_train_count: null  # Optional: specify exact number of train images (e.g. 24)
+    fixed_val_count: null    # Optional: specify exact number of val images (e.g. 4)
+    fixed_test_count: null   # Optional: specify exact number of test images (e.g. 4)
+    shuffle: true
+    seed: 42
+  target_distribution:
+    exterior_facade: [7, 8]
+    entrance: [4, 5]
+    courtyard: [5, 6]
+    iwan: [4, 5]
+    minaret: [3, 4]
+    dome: [2, 3]
+    interior_ornament: [4, 5]
+
+training:
+  trigger_word: "sltnhsn"
+  base_model: "stabilityai/stable-diffusion-xl-base-1.0"
+  lora_rank: 16
+  lora_alpha: 16
+  learning_rate: 1.0e-4
+  optimizer: "AdamW8bit"
+  scheduler: "constant"
+  batch_size: 1
+  gradient_accumulation_steps: 8
+  dataloader_num_workers: 2
+  max_train_steps: 1000
+  epochs: 10
+  seed: 42
+  precision: "bf16"
+  checkpoint_frequency: 250
