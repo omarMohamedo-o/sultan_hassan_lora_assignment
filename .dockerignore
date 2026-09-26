@@ -1,0 +1,20 @@
+.git
+.venv
+__pycache__
+*.pyc
+.pytest_cache
+.ruff_cache
+
+# Exclude local models, outputs, and heavy datasets
+models/
+outputs/
+data/raw/
+data/frames/
+data_final.zip
+dataset_raw_local/
+data_task_compliant/
+dataset_preview/
+dataset_raw/
+dataset/
+mlruns.db
+mlruns/

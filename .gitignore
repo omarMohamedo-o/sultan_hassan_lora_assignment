@@ -1,0 +1,82 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environments
+.venv/
+env/
+venv/
+ENV/
+
+# Testing & Coverage
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# IDE
+.idea/
+*.swp
+*.swo
+
+# Large files / ML models (except deliverables)
+models/base/*
+models/classifiers/*
+models/embeddings/*
+*.safetensors
+*.ckpt
+*.pt
+*.bin
+
+# Keep directories with .gitkeep
+!models/base/.gitkeep
+!models/classifiers/.gitkeep
+!models/embeddings/.gitkeep
+!models/lora/.gitkeep
+!data/raw/videos/.gitkeep
+!data/raw/external/.gitkeep
+!data/frames/raw/.gitkeep
+!data/frames/quality_filtered/.gitkeep
+!data/frames/deduplicated/.gitkeep
+!data/candidates/images/.gitkeep
+!data/candidates/metadata/.gitkeep
+!data/review/contact_sheets/.gitkeep
+!data/review/decisions/.gitkeep
+!data/final/images/.gitkeep
+!data/final/captions/.gitkeep
+!outputs/checkpoints/.gitkeep
+!outputs/samples/.gitkeep
+!outputs/tests/.gitkeep
+!outputs/evaluation/.gitkeep
+
+# Local data and unzipped previews
+data_final.zip
+dataset_raw_local/
+data_task_compliant/
+dataset_preview/
+dataset_raw/
+dataset/
+mlruns.db
+
+datasets/raw/
+datasets/*.zip
