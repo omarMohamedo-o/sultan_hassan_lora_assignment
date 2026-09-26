@@ -1,0 +1,21 @@
+sample_id,group,group_name,prompt,seed,has_trigger,steps,guidance,resolution,image_path
+group1_sample1_seed101,1,Monumental Elevation,"sltnhsn, elevation",101,True,28,3.5,1024x1024,outputs\tests\group1_sample1_seed101.jpg
+group1_sample2_seed202,1,Monumental Elevation,"sltnhsn, elevation",202,True,28,3.5,1024x1024,outputs\tests\group1_sample2_seed202.jpg
+group1_sample3_seed303,1,Monumental Elevation,"sltnhsn, elevation",303,True,28,3.5,1024x1024,outputs\tests\group1_sample3_seed303.jpg
+group1_sample4_seed404,1,Monumental Elevation,"sltnhsn, elevation",404,True,28,3.5,1024x1024,outputs\tests\group1_sample4_seed404.jpg
+group2_sample1_seed101,2,Monumental Portal & Gates,"sltnhsn, entrance gates",101,True,28,3.5,1024x1024,outputs\tests\group2_sample1_seed101.jpg
+group2_sample2_seed202,2,Monumental Portal & Gates,"sltnhsn, entrance gates",202,True,28,3.5,1024x1024,outputs\tests\group2_sample2_seed202.jpg
+group2_sample3_seed303,2,Monumental Portal & Gates,"sltnhsn, entrance gates",303,True,28,3.5,1024x1024,outputs\tests\group2_sample3_seed303.jpg
+group2_sample4_seed404,2,Monumental Portal & Gates,"sltnhsn, entrance gates",404,True,28,3.5,1024x1024,outputs\tests\group2_sample4_seed404.jpg
+group3_sample1_seed101,3,Courtyard & Central Fountain,"sltnhsn, a courtyard with a central fountain at sunset",101,True,28,3.5,1024x1024,outputs\tests\group3_sample1_seed101.jpg
+group3_sample2_seed202,3,Courtyard & Central Fountain,"sltnhsn, a courtyard with a central fountain at sunset",202,True,28,3.5,1024x1024,outputs\tests\group3_sample2_seed202.jpg
+group3_sample3_seed303,3,Courtyard & Central Fountain,"sltnhsn, a courtyard with a central fountain at sunset",303,True,28,3.5,1024x1024,outputs\tests\group3_sample3_seed303.jpg
+group3_sample4_seed404,3,Courtyard & Central Fountain,"sltnhsn, a courtyard with a central fountain at sunset",404,True,28,3.5,1024x1024,outputs\tests\group3_sample4_seed404.jpg
+group4_sample1_seed101,4,Mosque Nocturnal Atmosphere,"sltnhsn, a mosque at night",101,True,28,3.5,1024x1024,outputs\tests\group4_sample1_seed101.jpg
+group4_sample2_seed202,4,Mosque Nocturnal Atmosphere,"sltnhsn, a mosque at night",202,True,28,3.5,1024x1024,outputs\tests\group4_sample2_seed202.jpg
+group4_sample3_seed303,4,Mosque Nocturnal Atmosphere,"sltnhsn, a mosque at night",303,True,28,3.5,1024x1024,outputs\tests\group4_sample3_seed303.jpg
+group4_sample4_seed404,4,Mosque Nocturnal Atmosphere,"sltnhsn, a mosque at night",404,True,28,3.5,1024x1024,outputs\tests\group4_sample4_seed404.jpg
+group5_sample1_seed101,5,Negative Control (Office Tower),a modern glass office tower,101,False,28,3.5,1024x1024,outputs\tests\group5_sample1_seed101.jpg
+group5_sample2_seed202,5,Negative Control (Office Tower),a modern glass office tower,202,False,28,3.5,1024x1024,outputs\tests\group5_sample2_seed202.jpg
+group5_sample3_seed303,5,Negative Control (Office Tower),a modern glass office tower,303,False,28,3.5,1024x1024,outputs\tests\group5_sample3_seed303.jpg
+group5_sample4_seed404,5,Negative Control (Office Tower),a modern glass office tower,404,False,28,3.5,1024x1024,outputs\tests\group5_sample4_seed404.jpg

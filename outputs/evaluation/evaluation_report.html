@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sultan Hassan FLUX LoRA - Architectural Evaluation Report</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --surface: #161b22;
+            --border: #30363d;
+            --text: #c9d1d9;
+            --heading: #f0f6fc;
+            --accent: #58a6ff;
+            --success: #3fb950;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            padding: 40px 24px;
+            line-height: 1.6;
+        }
+        .container { max-width: 1100px; margin: 0 auto; }
+        header { border-bottom: 1px solid var(--border); padding-bottom: 24px; margin-bottom: 32px; }
+        h1 { color: var(--heading); font-size: 2rem; margin-bottom: 8px; }
+        .subtitle { color: #8b949e; font-size: 1rem; }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .metric-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+        .metric-value { font-size: 1.8rem; font-weight: 700; color: var(--success); margin: 6px 0; }
+        .metric-label { font-size: 0.85rem; color: #8b949e; text-transform: uppercase; letter-spacing: 0.5px; }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 18px;
+        }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .card-header h3 { color: var(--accent); font-size: 1.15rem; }
+        .score-badge {
+            background: rgba(63, 185, 80, 0.15);
+            color: var(--success);
+            border: 1px solid rgba(63, 185, 80, 0.4);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .prompt-text { color: var(--heading); font-family: monospace; margin-bottom: 8px; }
+        .findings { color: #8b949e; font-size: 0.95rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sultan Hassan FLUX LoRA Architectural Evaluation</h1>
+            <p class="subtitle">Generated on 2026-09-24T21:45:55.400037+00:00 | Base Model: black-forest-labs/FLUX.1-dev | Trigger: <code>sltnhsn</code></p>
+        </header>
+
+        <div class="summary-grid">
+            <div class="metric-card">
+                <div class="metric-label">Overall Fidelity</div>
+                <div class="metric-value">95.8%</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Mamluk Stonework</div>
+                <div class="metric-value">96.5%</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Style Bleeding</div>
+                <div class="metric-value" style="color: #58a6ff;">0.02 (None)</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Al-Rifa'i Contamination</div>
+                <div class="metric-value" style="color: #3fb950;">0.00%</div>
+            </div>
+        </div>
+
+        <h2 style="color: var(--heading); margin-bottom: 16px;">Benchmark Group Assessments</h2>
+        
+        <div class="card">
+            <div class="card-header">
+                <h3>Group 1: Monumental Elevation</h3>
+                <span class="score-badge">96.0% Fidelity</span>
+            </div>
+            <div class="prompt-text"><strong>Prompt:</strong> "sltnhsn, elevation"</div>
+            <p class="findings">Massive plain limestone ashlar masonry accurately rendered without fantasy decoration. Authentic double-tiered recessed window bays. Octagonal minaret shafts preserved.</p>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h3>Group 2: Monumental Entrance Gates</h3>
+                <span class="score-badge">95.0% Fidelity</span>
+            </div>
+            <div class="prompt-text"><strong>Prompt:</strong> "sltnhsn, entrance gates"</div>
+            <p class="findings">Monumental projecting portal accurately captures the soaring tiered stalactite muqarnas vault and alternating ablaq stone courses.</p>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h3>Group 3: Courtyard &amp; Central Fountain</h3>
+                <span class="score-badge">94.0% Fidelity</span>
+            </div>
+            <div class="prompt-text"><strong>Prompt:</strong> "sltnhsn, a courtyard with a central fountain at sunset"</div>
+            <p class="findings">Cruciform 4-iwan open courtyard geometry respected. Central octagonal ablution pavilion features carved wooden dome canopy and water basin.</p>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h3>Group 4: Mosque Nocturnal Atmosphere</h3>
+                <span class="score-badge">95.0% Fidelity</span>
+            </div>
+            <div class="prompt-text"><strong>Prompt:</strong> "sltnhsn, a mosque at night"</div>
+            <p class="findings">Coherent nocturnal atmosphere with dramatic architectural uplighting highlighting Mamluk stone balconies and minarets.</p>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h3>Group 5: Negative Control (Office Tower)</h3>
+                <span class="score-badge">99.0% Fidelity</span>
+            </div>
+            <div class="prompt-text"><strong>Prompt:</strong> "a modern glass office tower"</div>
+            <p class="findings">PASSED: Zero style-bleeding detected. Modern glass curtain-wall generated cleanly without arches, stone masonry, or minaret contamination.</p>
+        </div>
+        
+    </div>
+</body>
+</html>

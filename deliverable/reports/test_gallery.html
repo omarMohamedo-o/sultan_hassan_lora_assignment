@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sultan Hassan FLUX LoRA - Benchmark Test Gallery</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --surface: #161b22;
+            --border: #30363d;
+            --text: #c9d1d9;
+            --text-heading: #f0f6fc;
+            --accent: #58a6ff;
+            --success: #3fb950;
+            --warning: #d29922;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            padding: 32px 24px;
+            line-height: 1.5;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        header { margin-bottom: 40px; border-bottom: 1px solid var(--border); padding-bottom: 24px; }
+        h1 { font-size: 2.2rem; color: var(--text-heading); margin-bottom: 8px; }
+        .subtitle { font-size: 1.05rem; color: #8b949e; }
+        .group-section { margin-bottom: 48px; }
+        .group-header { margin-bottom: 20px; }
+        .group-header h2 { font-size: 1.4rem; color: var(--accent); margin-bottom: 4px; }
+        .group-desc { color: #8b949e; font-size: 0.95rem; }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .card:hover { transform: translateY(-4px); border-color: var(--accent); }
+        .card img { width: 100%; height: auto; display: block; aspect-ratio: 1/1; object-fit: cover; }
+        .card-info { padding: 16px; }
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 6px;
+            margin-bottom: 8px;
+        }
+        .badge.seed { background: #21262d; color: #58a6ff; border: 1px solid #30363d; }
+        .badge.trigger { background: rgba(63, 185, 80, 0.15); color: #3fb950; border: 1px solid rgba(63, 185, 80, 0.4); }
+        .badge.control { background: rgba(210, 153, 34, 0.15); color: #d29922; border: 1px solid rgba(210, 153, 34, 0.4); }
+        .prompt { font-weight: 600; color: var(--text-heading); font-size: 0.95rem; margin-bottom: 8px; }
+        .meta { font-size: 0.8rem; color: #8b949e; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sultan Hassan FLUX LoRA - Benchmark Test Suite</h1>
+            <p class="subtitle">20 Test Images across 5 Benchmark Prompt Groups with Fixed Reproducible Seeds (101, 202, 303, 404)</p>
+        </header>
+        
+        <section class="group-section">
+            <div class="group-header">
+                <h2>Group 1: Monumental Elevation</h2>
+                <p class="group-desc">Massive plain limestone walls, vertical recessed window bays, and minarets.</p>
+            </div>
+            <div class="cards-grid">
+                
+            <div class="card">
+                <img src="group1_sample1_seed101.jpg" alt="group1_sample1_seed101" loading="lazy" />
+                <div class="card-info">
+                    <span class="badge seed">Seed: 101</span>
+                    <span class="badge trigger">
+                        Trigger Active
+                    </span>
+                    <div class="prompt">"sltnhsn, elevation"</div>
+                    <div class="meta">Steps: 28 | Guidance: 3.5 | Res: 1024x1024</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="group1_sample2_seed202.jpg" alt="group1_sample2_seed202" loading="lazy" />
+                <div class="card-info">
+                    <span class="badge seed">Seed: 202</span>
+                    <span class="badge trigger">
+                        Trigger Active
+                    </span>
+                    <div class="prompt">"sltnhsn, elevation"</div>
+                    <div class="meta">Steps: 28 | Guidance: 3.5 | Res: 1024x1024</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="group1_sample3_seed303.jpg" alt="group1_sample3_seed303" loading="lazy" />
+                <div class="card-info">
+                    <span class="badge seed">Seed: 303</span>
+                    <span class="badge trigger">
+                        Trigger Active
+                    </span>
+                    <div class="prompt">"sltnhsn, elevation"</div>
+                    <div class="meta">Steps: 28 | Guidance: 3.5 | Res: 1024x1024</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="group1_sample4_seed404.jpg" alt="group1_sample4_seed404" loading="lazy" />
+                <div class="card-info">
+                    <span class="badge seed">Seed: 404</span>
+                    <span class="badge trigger">
+                        Trigger Active
+                    </span>
+                    <div class="prompt">"sltnhsn, elevation"</div>
+                    <div class="meta">Steps: 28 | Guidance: 3.5 | Res: 1024x1024</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        <section class="group-section">
+            <div class="group-header">
+                <h2>Group 2: Monumental Portal &amp; Gates</h2>
+                <p class="group-desc">Monumental projecting portal, tiered muqarnas stalactite corbelling, and ablaq masonry.</p>
+            </div>
+            <div class="cards-grid">
+                
+            <div class="card">
+                <img src="group2_sample1_seed101.jpg" alt="group2_sample1_seed101" loading="lazy" />
+                <div class="card-info">
+                    <span class="badge seed">Seed: 101</span>
+                    <span class="badge trigger">
+                        Trigger Active
+                    </span>
+                    <div class="prompt">"sltnhsn, entrance gates"</div>
+                    <div class="meta">Steps: 28 | Guidance: 3.5 | Res: 1024x1024</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="group2_sample2_seed202.jpg" alt="group2_sample2_seed202" loading="lazy" />
+                <div class="card-info">
+                    <span class="badge seed">Seed: 202</span>
+                    <span class="badge trigger">
+                        Trigger Active
+                    </span>
+                    <div class="prompt">"sltnhsn, entrance gates"</div>
+                    <div class="meta">Steps: 28 | Guidance: 3.5 | Res: 1024x1024</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="group2_sample3_seed303.jpg" alt="group2_sample3_seed303" loading="lazy" />
+                <div class="card-info">
+                    <span class="badge seed">Seed: 303</span>
+                    <span class="badge trigger">
+                        Trigger Active
+                    </span>
+                    <div class="prompt">"sltnhsn, entrance gates"</div>
+                    <div class="meta">Steps: 28 | Guidance: 3.5 | Res: 1024x1024</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="group2_sample4_seed404.jpg" alt="group2_sample4_seed404" loading="lazy" />
+                <div class="card-info">
+                    <span class="badge seed">Seed: 404</span>
+                    <span class="badge trigger">
+                        Trigger Active
+                    </span>
+                    <div class="prompt">"sltnhsn, entrance gates"</div>
+                    <div class="meta">Steps: 28 | Guidance: 3.5 | Res: 1024x1024</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        <section class="group-section">
+            <div class="group-header">
+                <h2>Group 3: Courtyard &amp; Central Fountain</h2>
+                <p class="group-desc">4-iwan cruciform courtyard, octagonal ablution fountain with carved dome, golden sunset.</p>
+            </div>
+            <div class="cards-grid">
+                
+            <div class="card">
+                <img src="group3_sample1_seed101.jpg" alt="group3_sample1_seed101" loading="lazy" />
+                <div class="card-info">
+                    <span class="badge seed">Seed: 101</span>
+                    <span class="badge trigger">
+                        Trigger Active
+                    </span>
+                    <div class="prompt">"sltnhsn, a courtyard with a central fountain at sunset"</div>
+                    <div class="meta">Steps: 28 | Guidance: 3.5 | Res: 1024x1024</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="group3_sample2_seed202.jpg" alt="group3_sample2_seed202" loading="lazy" />
+                <div class="card-info">
+                    <span class="badge seed">Seed: 202</span>
+                    <span class="badge trigger">
+                        Trigger Active
+                    </span>
+                    <div class="prompt">"sltnhsn, a courtyard with a central fountain at sunset"</div>
+                    <div class="meta">Steps: 28 | Guidance: 3.5 | Res: 1024x1024</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="group3_sample3_seed303.jpg" alt="group3_sample3_seed303" loading="lazy" />
+                <div class="card-info">
+                    <span class="badge seed">Seed: 303</span>
+                    <span class="badge trigger">
+                        Trigger Active
+                    </span>
+                    <div class="prompt">"sltnhsn, a courtyard with a central fountain at sunset"</div>
+                    <div class="meta">Steps: 28 | Guidance: 3.5 | Res: 1024x1024</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="group3_sample4_seed404.jpg" alt="group3_sample4_seed404" loading="lazy" />
+                <div class="card-info">
+                    <span class="badge seed">Seed: 404</span>
+                    <span class="badge trigger">
+                        Trigger Active
+                    </span>
+                    <div class="prompt">"sltnhsn, a courtyard with a central fountain at sunset"</div>
+                    <div class="meta">Steps: 28 | Guidance: 3.5 | Res: 1024x1024</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        <section class="group-section">
+            <div class="group-header">
+                <h2>Group 4: Mosque Nocturnal Atmosphere</h2>
+                <p class="group-desc">Midnight sky, dramatic architectural uplighting on minaret balconies, and glowing lamps.</p>
+            </div>
+            <div class="cards-grid">
+                
+            <div class="card">
+                <img src="group4_sample1_seed101.jpg" alt="group4_sample1_seed101" loading="lazy" />
+                <div class="card-info">
+                    <span class="badge seed">Seed: 101</span>
+                    <span class="badge trigger">
+                        Trigger Active
+                    </span>
+                    <div class="prompt">"sltnhsn, a mosque at night"</div>
+                    <div class="meta">Steps: 28 | Guidance: 3.5 | Res: 1024x1024</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="group4_sample2_seed202.jpg" alt="group4_sample2_seed202" loading="lazy" />
+                <div class="card-info">
+                    <span class="badge seed">Seed: 202</span>
+                    <span class="badge trigger">
+                        Trigger Active
+                    </span>
+                    <div class="prompt">"sltnhsn, a mosque at night"</div>
+                    <div class="meta">Steps: 28 | Guidance: 3.5 | Res: 1024x1024</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="group4_sample3_seed303.jpg" alt="group4_sample3_seed303" loading="lazy" />
+                <div class="card-info">
+                    <span class="badge seed">Seed: 303</span>
+                    <span class="badge trigger">
+                        Trigger Active
+                    </span>
+                    <div class="prompt">"sltnhsn, a mosque at night"</div>
+                    <div class="meta">Steps: 28 | Guidance: 3.5 | Res: 1024x1024</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="group4_sample4_seed404.jpg" alt="group4_sample4_seed404" loading="lazy" />
+                <div class="card-info">
+                    <span class="badge seed">Seed: 404</span>
+                    <span class="badge trigger">
+                        Trigger Active
+                    </span>
+                    <div class="prompt">"sltnhsn, a mosque at night"</div>
+                    <div class="meta">Steps: 28 | Guidance: 3.5 | Res: 1024x1024</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+        <section class="group-section">
+            <div class="group-header">
+                <h2>Group 5: Negative Control (Office Tower)</h2>
+                <p class="group-desc">Modern corporate glass curtain-wall grid; verifies zero style-bleeding or trigger leakage.</p>
+            </div>
+            <div class="cards-grid">
+                
+            <div class="card">
+                <img src="group5_sample1_seed101.jpg" alt="group5_sample1_seed101" loading="lazy" />
+                <div class="card-info">
+                    <span class="badge seed">Seed: 101</span>
+                    <span class="badge control">
+                        Negative Control
+                    </span>
+                    <div class="prompt">"a modern glass office tower"</div>
+                    <div class="meta">Steps: 28 | Guidance: 3.5 | Res: 1024x1024</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="group5_sample2_seed202.jpg" alt="group5_sample2_seed202" loading="lazy" />
+                <div class="card-info">
+                    <span class="badge seed">Seed: 202</span>
+                    <span class="badge control">
+                        Negative Control
+                    </span>
+                    <div class="prompt">"a modern glass office tower"</div>
+                    <div class="meta">Steps: 28 | Guidance: 3.5 | Res: 1024x1024</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="group5_sample3_seed303.jpg" alt="group5_sample3_seed303" loading="lazy" />
+                <div class="card-info">
+                    <span class="badge seed">Seed: 303</span>
+                    <span class="badge control">
+                        Negative Control
+                    </span>
+                    <div class="prompt">"a modern glass office tower"</div>
+                    <div class="meta">Steps: 28 | Guidance: 3.5 | Res: 1024x1024</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="group5_sample4_seed404.jpg" alt="group5_sample4_seed404" loading="lazy" />
+                <div class="card-info">
+                    <span class="badge seed">Seed: 404</span>
+                    <span class="badge control">
+                        Negative Control
+                    </span>
+                    <div class="prompt">"a modern glass office tower"</div>
+                    <div class="meta">Steps: 28 | Guidance: 3.5 | Res: 1024x1024</div>
+                </div>
+            </div>
+            
+            </div>
+        </section>
+        
+    </div>
+</body>
+</html>
