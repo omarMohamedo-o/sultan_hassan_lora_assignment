@@ -1,0 +1,15 @@
+# Development overrides for fast testing and local debugging
+video:
+  sampling_mode: "seconds"
+  sample_interval_seconds: 1.0
+
+quality:
+  blur_threshold: 80.0
+  brightness_min: 25.0
+  brightness_max: 240.0
+
+deduplication:
+  distance_threshold: 8
+
+semantic:
+  clip_enabled: false
